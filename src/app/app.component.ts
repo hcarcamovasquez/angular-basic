@@ -6,5 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-basic';
+
+  greeting = 'Hola a todos'
+  image = 'https://www.adslzone.net/app/uploads-adslzone.net/2019/04/borrar-fondo-imagen.jpg'
+
+  inputText = 'este es un input'
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  onClick(){
+    alert('Esto es un Click')
+  }
+
 }
