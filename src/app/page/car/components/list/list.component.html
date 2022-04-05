@@ -1,1 +1,68 @@
+<mat-form-field appearance="standard">
+  <mat-label>Filter</mat-label>
+  <input matInput
+         (keyup)="applyFilter($event)"
+         placeholder="Elige un filtro"
+         autocomplete="off"
+         #input>
+</mat-form-field>
 
+<div class="mat-elevation-z8">
+  <mat-table [dataSource]="dataSource" matSort>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="brand">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Brand </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.brand}} </mat-cell>
+    </ng-container>
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="color">
+      <mat-header-cell  *matHeaderCellDef mat-sort-header> Color </mat-header-cell>
+      <mat-cell  *matCellDef="let row"> {{row.color}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="model">
+      <mat-header-cell  *matHeaderCellDef mat-sort-header> Model </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.model}} </mat-cell>
+    </ng-container>
+
+    <!-- Fruit Column -->
+    <ng-container matColumnDef="year">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Year </mat-header-cell>
+      <mat-cell  *matCellDef="let row"> {{row.year}} </mat-cell>
+    </ng-container>
+    <!-- Fruit Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>
+      <mat-cell  *matCellDef="let row">
+
+
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button
+            (click)="openUpdateDialog(row)"
+            mat-menu-item>
+            Update
+          </button>
+          <button mat-menu-item>
+            Delete
+          </button>
+        </mat-menu>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row  *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row  *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="pagaSize" aria-label="Select page of users"></mat-paginator>
+</div>

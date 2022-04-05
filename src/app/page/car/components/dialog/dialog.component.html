@@ -1,0 +1,49 @@
+
+
+<h1 mat-dialog-title *ngIf="data?.item?.id ; else create">Actualizando tu automóvil</h1>
+
+<ng-template #create>
+  <h1 mat-dialog-title >Creando tu automóvil</h1>
+</ng-template>
+
+<div mat-dialog-content>
+
+  <form [formGroup]="formUpdate">
+    <mat-form-field class="full-with" appearance="fill">
+      <mat-label>Brand</mat-label>
+      <input matInput
+             [formControlName]="'brand'"
+             placeholder="brand">
+    </mat-form-field>
+
+    <mat-form-field class="full-with" appearance="fill">
+      <mat-label>Color</mat-label>
+      <input matInput
+             [formControlName]="'color'"
+             placeholder="color">
+    </mat-form-field>
+
+    <mat-form-field class="full-with" appearance="fill">
+      <mat-label>Model</mat-label>
+      <input matInput
+             [formControlName]="'model'"
+             placeholder="model">
+    </mat-form-field>
+
+    <mat-form-field class="full-with" appearance="fill">
+      <mat-label>Year</mat-label>
+      <input matInput
+             [formControlName]="'year'"
+             placeholder="year">
+    </mat-form-field>
+  </form>
+
+
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="close()">Cancelar</button>
+  <button mat-button
+          [disabled]="formUpdate.invalid"
+          (click)="update()" cdkFocusInitial>Actualizar</button>
+</div>
